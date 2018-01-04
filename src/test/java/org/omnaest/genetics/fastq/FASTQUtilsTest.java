@@ -33,35 +33,36 @@ import org.omnaest.genetics.fastq.domain.Sequence;
  */
 public class FASTQUtilsTest
 {
+    @Test
+    public void testReadInputStream() throws Exception
+    {
+        Stream<Sequence> sequences = FASTQUtils.read()
+                                               .from(this.getClass()
+                                                         .getResourceAsStream("/example2.fastq"))
+                                               .getSequences();
+        List<Sequence> collected = sequences.collect(Collectors.toList());
+        assertEquals(2, collected.size());
+        assertEquals("GGGTGATGGCCGCTGCCGATGGCGTCAAATCCCACCAAGTTACCCTTAACAACTTAAGGGTTTTCAAATAGA", collected.get(0)
+                                                                                                          .asCodeSequence());
+        assertEquals("GTTCAGGGATACGACGTTTGTATTTTAAGAATCTGAAGCAGAAGTCGATGATAATACGCGTCGTTTTATCAT", collected.get(1)
+                                                                                                          .asCodeSequence());
+        assertEquals("I", collected.get(0)
+                                   .getSequence()
+                                   .get(0)
+                                   .getQuality());
+        assertEquals("/", collected.get(0)
+                                   .getSequence()
+                                   .get(71)
+                                   .getQuality());
+        assertEquals(40, collected.get(0)
+                                  .getSequence()
+                                  .get(0)
+                                  .getQualityQuantifier());
+        assertEquals(14, collected.get(0)
+                                  .getSequence()
+                                  .get(71)
+                                  .getQualityQuantifier());
 
-	@Test
-	public void testReadInputStream() throws Exception
-	{
-		Stream<Sequence> sequences = FASTQUtils.read(this	.getClass()
-															.getResourceAsStream("/example2.fastq"));
-		List<Sequence> collected = sequences.collect(Collectors.toList());
-		assertEquals(2, collected.size());
-		assertEquals("GGGTGATGGCCGCTGCCGATGGCGTCAAATCCCACCAAGTTACCCTTAACAACTTAAGGGTTTTCAAATAGA", collected	.get(0)
-																											.asCodeSequence());
-		assertEquals("GTTCAGGGATACGACGTTTGTATTTTAAGAATCTGAAGCAGAAGTCGATGATAATACGCGTCGTTTTATCAT", collected	.get(1)
-																											.asCodeSequence());
-		assertEquals("I", collected	.get(0)
-									.getSequence()
-									.get(0)
-									.getQuality());
-		assertEquals("/", collected	.get(0)
-									.getSequence()
-									.get(71)
-									.getQuality());
-		assertEquals(40, collected	.get(0)
-									.getSequence()
-									.get(0)
-									.getQualityQuantifier());
-		assertEquals(14, collected	.get(0)
-									.getSequence()
-									.get(71)
-									.getQualityQuantifier());
-
-	}
+    }
 
 }

@@ -21,39 +21,56 @@ package org.omnaest.genetics.fastq.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.omnaest.genetics.translator.domain.NucleicAcidCodeSequence;
+
+/**
+ * Representation of a single code sequence
+ * 
+ * @author omnaest
+ */
 public class Sequence
 {
-	private String					id;
-	private List<CodeAndQuality>	sequence;
+    private String               id;
+    private List<CodeAndQuality> sequence;
 
-	public Sequence(String id, List<CodeAndQuality> sequence)
-	{
-		super();
-		this.id = id;
-		this.sequence = sequence;
-	}
+    public Sequence(String id, List<CodeAndQuality> sequence)
+    {
+        super();
+        this.id = id;
+        this.sequence = sequence;
+    }
 
-	public List<CodeAndQuality> getSequence()
-	{
-		return this.sequence;
-	}
+    public List<CodeAndQuality> getSequence()
+    {
+        return this.sequence;
+    }
 
-	public String getId()
-	{
-		return this.id;
-	}
+    public String getId()
+    {
+        return this.id;
+    }
 
-	@Override
-	public String toString()
-	{
-		return "Sequence [id=" + this.id + ", sequence=" + this.sequence + "]";
-	}
+    @Override
+    public String toString()
+    {
+        return "Sequence [id=" + this.id + ", sequence=" + this.sequence + "]";
+    }
 
-	public String asCodeSequence()
-	{
-		return this.sequence.stream()
-							.map(cq -> cq.getCode())
-							.collect(Collectors.joining());
-	}
+    public String asCodeSequence()
+    {
+        return this.sequence.stream()
+                            .map(cq -> cq.getCode())
+                            .collect(Collectors.joining());
+    }
+
+    /**
+     * Returns the {@link Sequence} as {@link NucleicAcidCodeSequence}
+     * 
+     * @return
+     */
+    public NucleicAcidCodeSequence asNucleicAcidCodeSequence()
+    {
+        return NucleicAcidCodeSequence.valueOf(this.asCodeSequence());
+    }
 
 }
