@@ -29,6 +29,7 @@ import java.io.Reader;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -58,6 +59,14 @@ public class FASTQUtils
          * @throws FileNotFoundException
          */
         public FASTQData from(File file) throws FileNotFoundException;
+
+        /**
+         * Similar to {@link #from(File)} but for multiple {@link File}s
+         * 
+         * @param files
+         * @return
+         */
+        public FASTQData from(File... files);
 
         /**
          * Reads the {@link FASTQData} from a given {@link InputStream}
@@ -125,6 +134,25 @@ public class FASTQUtils
             }
 
             @Override
+            public FASTQData from(File... files)
+            {
+                return this.from(Arrays.asList(files)
+                                       .stream()
+                                       .flatMap(file ->
+                                       {
+                                           try
+                                           {
+                                               return this.from(file)
+                                                          .getSequences();
+                                           }
+                                           catch (FileNotFoundException e)
+                                           {
+                                               throw new IllegalStateException(e);
+                                           }
+                                       }));
+            }
+
+            @Override
             public FASTQData from(InputStream inputStream)
             {
                 return this.from(new InputStreamReader(new BOMInputStream(inputStream), this.encoding));
@@ -134,6 +162,12 @@ public class FASTQUtils
             public FASTQData from(Reader reader)
             {
                 Stream<Sequence> sequences = read(reader, this.exceptionHandler);
+                return this.from(sequences);
+
+            }
+
+            private FASTQData from(Stream<Sequence> sequences)
+            {
                 return new FASTQData()
                 {
                     @Override
@@ -142,7 +176,6 @@ public class FASTQUtils
                         return sequences;
                     }
                 };
-
             }
 
         };

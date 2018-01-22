@@ -20,12 +20,15 @@ package org.omnaest.genetics.fastq;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.omnaest.genetics.fastq.domain.Sequence;
+import org.omnaest.utils.FileUtils;
 
 /**
  * @see FASTQUtils
@@ -62,6 +65,22 @@ public class FASTQUtilsTest
                                   .getSequence()
                                   .get(71)
                                   .getQualityQuantifier());
+
+    }
+
+    @Test
+    @Ignore
+    public void testReadInputStream2() throws Exception
+    {
+        Stream<Sequence> sequences = FASTQUtils.read()
+                                               .from(new File("C:\\Z\\data\\4\\raw\\55101705103780_read1.fastq"))
+                                               .getSequences()
+                                               .limit(10000);
+        List<Sequence> collected = sequences.collect(Collectors.toList());
+
+        FileUtils.toStreamConsumer(new File("C:\\Z\\data\\4\\raw\\55101705103780_read1_sample.fastq"))
+                 .accept(collected.stream()
+                                  .map(sequence -> sequence.asCodeSequence()));
 
     }
 
