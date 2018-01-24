@@ -29,7 +29,6 @@ import java.io.Reader;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -136,8 +135,7 @@ public class FASTQUtils
             @Override
             public FASTQData from(File... files)
             {
-                return this.from(Arrays.asList(files)
-                                       .stream()
+                return this.from(Stream.of(files)
                                        .flatMap(file ->
                                        {
                                            try
