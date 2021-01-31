@@ -21,7 +21,7 @@ package org.omnaest.genetics.fastq.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.omnaest.genetics.translator.domain.NucleicAcidCodeSequence;
+import org.omnaest.genomics.translator.domain.NucleicAcidCodeSequence;
 
 /**
  * Representation of a single code sequence
