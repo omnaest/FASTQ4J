@@ -1,4 +1,4 @@
-package org.omnaest.genetics.fastq.domain;
+package org.omnaest.genomics.fastq.domain;
 
 import java.util.stream.Stream;
 

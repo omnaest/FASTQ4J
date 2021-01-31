@@ -16,7 +16,7 @@
 
 
 */
-package org.omnaest.genetics.fastq;
+package org.omnaest.genomics.fastq;
 
 import static org.junit.Assert.assertEquals;
 
@@ -27,7 +27,8 @@ import java.util.stream.Stream;
 
 import org.junit.Ignore;
 import org.junit.Test;
-import org.omnaest.genetics.fastq.domain.Sequence;
+import org.omnaest.genomics.fastq.FASTQUtils;
+import org.omnaest.genomics.fastq.domain.Sequence;
 import org.omnaest.utils.FileUtils;
 
 /**

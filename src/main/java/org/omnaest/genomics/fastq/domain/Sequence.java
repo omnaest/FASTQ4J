@@ -16,7 +16,7 @@
 
 
 */
-package org.omnaest.genetics.fastq.domain;
+package org.omnaest.genomics.fastq.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;

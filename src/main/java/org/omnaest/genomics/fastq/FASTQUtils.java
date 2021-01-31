@@ -16,7 +16,7 @@
 
 
 */
-package org.omnaest.genetics.fastq;
+package org.omnaest.genomics.fastq;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -36,10 +36,10 @@ import java.util.stream.Stream;
 
 import org.apache.commons.io.input.BOMInputStream;
 import org.apache.commons.lang.StringUtils;
-import org.omnaest.genetics.fastq.domain.CodeAndQuality;
-import org.omnaest.genetics.fastq.domain.FASTQData;
-import org.omnaest.genetics.fastq.domain.Sequence;
-import org.omnaest.genetics.fastq.utils.ExceptionHandler;
+import org.omnaest.genomics.fastq.domain.CodeAndQuality;
+import org.omnaest.genomics.fastq.domain.FASTQData;
+import org.omnaest.genomics.fastq.domain.Sequence;
+import org.omnaest.genomics.fastq.utils.ExceptionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

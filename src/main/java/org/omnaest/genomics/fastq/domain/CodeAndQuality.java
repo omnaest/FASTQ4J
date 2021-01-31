@@ -16,7 +16,7 @@
 
 
 */
-package org.omnaest.genetics.fastq.domain;
+package org.omnaest.genomics.fastq.domain;
 
 import org.apache.commons.lang.StringUtils;
 

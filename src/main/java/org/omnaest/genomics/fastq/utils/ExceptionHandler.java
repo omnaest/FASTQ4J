@@ -16,7 +16,7 @@
 	
 
 */
-package org.omnaest.genetics.fastq.utils;
+package org.omnaest.genomics.fastq.utils;
 
 public interface ExceptionHandler
 {
