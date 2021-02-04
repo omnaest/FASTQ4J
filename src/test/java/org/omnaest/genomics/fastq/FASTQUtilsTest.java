@@ -79,7 +79,7 @@ public class FASTQUtilsTest
                                                .limit(10000);
         List<Sequence> collected = sequences.collect(Collectors.toList());
 
-        FileUtils.toStreamConsumer(new File("C:\\Z\\data\\4\\raw\\55101705103780_read1_sample.fastq"))
+        FileUtils.toLineStreamConsumer(new File("C:\\Z\\data\\4\\raw\\55101705103780_read1_sample.fastq"))
                  .accept(collected.stream()
                                   .map(sequence -> sequence.asCodeSequence()));
 
